@@ -1,0 +1,99 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_file" xsi:type="string">images/logo.svg</argument>
+                <argument name="logo_img_width" xsi:type="number">199</argument>
+                <argument name="logo_img_height" xsi:type="number">62</argument>
+            </arguments>
+        </referenceBlock>
+
+        <referenceBlock name="header.links">
+
+            <block class="Magento\Framework\View\Element\Html\Link" name="aboutus.link">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">About Us</argument>
+                    <argument name="path" xsi:type="string" translate="false">about-us</argument>
+                </arguments>
+            </block>
+
+            <block class="Magento\Framework\View\Element\Html\Link" name="wish.link" after="aboutus.link">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Wish List</argument>
+                    <argument name="path" xsi:type="string" translate="false">wish-list</argument>
+                </arguments>
+            </block>
+
+            <block class="Magento\Framework\View\Element\Html\Link" name="gift.link" after="wish.link">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Gift Card</argument>
+                    <argument name="path" xsi:type="string" translate="false">gift-card</argument>
+                </arguments>
+            </block>
+
+            <block class="Magento\Framework\View\Element\Html\Link" name="store.link" after="gift.link">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Store List</argument>
+                    <argument name="path" xsi:type="string" translate="false">store-list</argument>
+                </arguments>
+            </block>
+
+
+            <block class="Magento\Framework\View\Element\Html\Link" name="order.link" after="store.link">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Order List</argument>
+                    <argument name="path" xsi:type="string" translate="false">order-list</argument>
+                </arguments>
+            </block>
+
+            <block class="Magento\Framework\View\Element\Html\Link" name="contact.link" after="order.link">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Contact Us</argument>
+                    <argument name="path" xsi:type="string" translate="false">contact-us</argument>
+                </arguments>
+            </block>
+
+            <block class="Magento\Framework\View\Element\Html\Link" name="help.link" after="contact.link">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Help</argument>
+                    <argument name="path" xsi:type="string" translate="false">help</argument>
+                </arguments>
+            </block>
+
+            <referenceBlock name="register-link" remove="true" />
+            <referenceBlock name="authorization-link" remove="true" />
+            <referenceBlock name="wish-list-link" remove="true" />
+            <referenceBlock name="my-account-link" remove="true" />
+
+        </referenceBlock>
+
+        <referenceBlock name="footer_links">
+            <referenceContainer name="footer">
+
+                <block class="Magento\Cms\Block\Block" name="tech.footer.links">
+                    <arguments>
+                        <argument name="footer_links" xsi:type="string">footer_links</argument>
+                    </arguments>
+                </block>
+            </referenceContainer>
+            
+            <referenceBlock name="privacy-policy-link" remove="true"/>
+            <referenceBlock name="search-term-popular-link" remove="true"/>
+            <referenceBlock name="catalog-search-advanced-link" remove="true"/>
+            <referenceBlock name="sales-guest-form-link" remove="true"/>
+            <referenceBlock name="contact-us-link" remove="true"/>
+
+        </referenceBlock>
+
+        <referenceBlock name="header.panel">
+            <move element="minicart" destination="header.panel" after="header.links"/>
+            <move element="top.search" destination="header.panel" after="minicart"/>
+            <move element="navigation.sections" destination="header-wrapper"/>
+        </referenceBlock>
+        
+        <referenceBlock name="footer">
+            <move element="form.subscribe" destination="skip_to_content.target" after="-"/>
+        </referenceBlock>
+
+    </body>
+</page>
