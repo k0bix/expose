@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Tech_Metro::metro" title="Tech" module="Tech_Metro" sortOrder="75" resource="Tech_Metro::metro"/>
+        <add id="Tech_Metro::post" title="Metro" module="Tech_Metro" sortOrder="10" action="tech_metro/post" resource="Tech_Metro::post" parent="Tech_Metro::metro"/>
+    </menu>
+</config>

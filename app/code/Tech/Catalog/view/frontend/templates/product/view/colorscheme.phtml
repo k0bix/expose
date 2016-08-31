@@ -1,0 +1,27 @@
+<?php
+$color = $this->getCategoryColor();
+$rgb = 'rgba(' . hexdec(substr($color,1,2)) . ',' .
+                 hexdec(substr($color,3,2)) . ',' .
+                 hexdec(substr($color,5,2)) . ', 0.8)';
+?>
+
+<style>
+    .fotorama__stage__frame:after {
+        border-top: 220px solid <?php echo $rgb?>;
+    }
+    .fotorama__img{
+        border-bottom: 12px solid <?php echo $rgb?> !important;
+    }
+    .catalog-category-view .page-title {
+        border-bottom: 13px solid <?php echo $rgb?>;
+    }
+    .product-item .action.towishlist{
+        color: <?php echo $color?> !important;
+    }
+    .action.towishlist{
+        border-right: 1px solid <?php echo $color?>;
+    }
+    .product-image-photo{
+        border-bottom: 12px solid <?php echo $color?>;
+    }
+</style>

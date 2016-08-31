@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Tech_Catalog::css/style.css"/>
+    </head>
+    <body>
+        <referenceBlock name="page.main.title" remove="true"/>
+        <referenceBlock name="reviews.tab" remove="true"/>
+
+        <move element="catalog.product.related" destination="content" after="-" />
+
+        <referenceContainer name="head.additional">
+            <block
+                    template="Tech_Catalog::product/view/colorscheme.phtml"
+                    class="Tech\Catalog\Block\Product\View\ColorScheme"
+                    name="tech.color.scheme" after="-"/>
+        </referenceContainer>
+
+        <referenceContainer name="product.info.main">
+            <block
+                    template="Tech_Catalog::product/view/title.phtml"
+                    class="Tech\Catalog\Block\Product\View\Title"
+                    name="tech.product.main.title" before="-"/>
+        </referenceContainer>
+
+        <referenceContainer name="content">
+
+            <block
+                    template="Tech_Catalog::product/view/qtytable.phtml"
+                    class="Magento\Catalog\Block\Product\View"
+                    name="tech.qty.table" after="-"/>
+
+        </referenceContainer>
+
+
+
+    </body>
+</page>

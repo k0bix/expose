@@ -1,0 +1,73 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Template for filter items block
+ *
+ * @var $block \Magento\LayeredNavigation\Block\Navigation\FilterRenderer
+ */
+?>
+
+
+<?php for ($j = 0; $j < 2; $j++): ?>
+
+    <?php if (count($filterItems) > 6 && $j == 1): ?>
+        <a class="more"><?php echo __('View More') ?></a>
+    <?php endif ?>
+
+    <ol class="items <?php echo ($j == 1) ? 'no-display' : ''; ?>"><?php $i = 0; ?>
+        <?php foreach ($filterItems as $filterItem): ?>
+            <?php if ($j == 0 && $i++ > 5) break; ?>
+            <?php if ($j == 1 && $i++ < 6) continue; ?>
+            <li class="item">
+                <?php if ($filterItem->getCount() > 0): ?>
+
+                    <?php
+                    $filter = $filterItem->getUrl();
+                    $filter = substr($filter,strpos($filter,'?')+1,strpos($filter,'=')-strpos($filter,'?')-1);
+                    ?>
+
+                    <label>
+
+                    <input type="checkbox" class="chk_filtered_<?php echo $filter; ?>"
+                           value="<?php echo $filterItem->getData('value'); ?>"/>
+
+                        <span class="chk-filter-span">
+                            <?php /* @escapeNotVerified */
+                            echo $filterItem->getLabel() ?>
+                            <?php if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
+                                <span class="count"><?php /* @escapeNotVerified */
+                                    echo $filterItem->getCount() ?><span class="filter-count-label">
+                                <?php if ($filterItem->getCount() == 1): ?><?php /* @escapeNotVerified */
+                                    echo __('item') ?>
+                                <?php else: ?><?php /* @escapeNotVerified */
+                                    echo __('items') ?><?php endif; ?></span></span>
+                            <?php endif; ?>
+                        </span>
+
+                    </label>
+
+                <?php else: ?>
+                    <?php /* @escapeNotVerified */
+                    echo $filterItem->getLabel() ?>
+                    <?php if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
+                        <span class="count"><?php /* @escapeNotVerified */
+                            echo $filterItem->getCount() ?><span class="filter-count-label">
+                        <?php if ($filterItem->getCount() == 1): ?><?php /* @escapeNotVerified */
+                            echo __('item') ?>
+                        <?php else: ?><?php /* @escapeNotVerified */
+                            echo __('items') ?><?php endif; ?></span></span>
+                    <?php endif; ?>
+                <?php endif; ?>
+            </li>
+        <?php endforeach ?>
+    </ol>
+
+<?php endfor ?>

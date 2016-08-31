@@ -1,0 +1,11 @@
+.cms-home .fotorama__stage__frame .fotorama__img{
+    width: 100%;
+}
+
+.cms-home .slider-placeholder{
+    height: 100%;
+}
+
+.cms-home .fotorama__nav.fotorama__nav--dots{
+    display: none;
+}

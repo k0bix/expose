@@ -1,0 +1,151 @@
+<?php
+/**
+ * Product view template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View
+ */
+
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+$_product = $block->getProduct();
+
+$allProducts = $_product->getTypeInstance()->getUsedProducts($_product, null);
+
+
+foreach ($allProducts as $product) {
+
+    if ($product->getStatus() != 2) {
+        $products[$product->getColor()][$product->getSize()] = $product->getEntityId();
+
+        if (!isset($colors[$product->getColor()])) {
+            $colors[$product->getColor()] = "1";
+        }
+        if (!isset($sizes[$product->getSize()])) {
+            $sizes[$product->getSize()] = "1";
+        }
+    }
+}
+
+foreach ($_product->getTypeInstance()->getConfigurableAttributes($_product) as $_attr) {
+
+    if ($_attr->getData()['attribute_id'] == "93") //color
+        foreach ($_attr->getData()['options'] as $option) {
+            if (isset($colors[$option['value_index']])) {
+                $colors[$option['value_index']] = $option['label'];
+            }
+        }
+    if ($_attr->getData()['attribute_id'] == "137") //size
+        foreach ($_attr->getData()['options'] as $option) {
+            if (isset($sizes[$option['value_index']])) {
+                $sizes[$option['value_index']] = $option['label'];
+            }
+        }
+}
+
+?>
+
+
+<form id="multiple_addtocart_form" action="<?php /* @escapeNotVerified */
+echo $block->getSubmitUrl($_product) ?>" method="post">
+    <input type="hidden" name="product" value="<?php /* @escapeNotVerified */
+    echo $_product->getId() ?>"/>
+    <input type="hidden" name="related_product" id="related-products-field" value=""/>
+
+    <?php echo $block->getBlockHtml('formkey') ?>
+    <?php echo $block->getChildHtml('form_top'); ?>
+
+    <table class="product-qty-table">
+
+        <tr>
+            <td>size/color</td>
+            <?php foreach ($sizes as $keySize => $valueSize): ?>
+                <td><?php echo $valueSize ?></td>
+            <?php endforeach; ?>
+        </tr>
+
+        <?php $i = 0; ?>
+        <?php foreach ($colors as $keyColor => $valueColor): ?>
+            <tr>
+                <td><?php echo $valueColor ?></td>
+                <?php foreach ($sizes as $keySize => $valueSize): ?>
+
+                    <td class="td-center">
+                        <?php if (isset($products[$keyColor][$keySize])): ?>
+                            <input type="hidden" name="super_attribute_arr[<?php echo $i; ?>][93]"
+                                   value="<?php echo $keyColor ?>"/>
+                            <input type="hidden" name="super_attribute_arr[<?php echo $i; ?>][137]"
+                                   value="<?php echo $keySize ?>"/>
+
+                            <input type="hidden" name="selected_configurable_option_arr[<?php echo $i; ?>]"
+                                   value="<?php echo $products[$keyColor][$keySize]; ?>"/>
+
+                            <a class="qty-minus" href="return:;">-</a>
+                            <input class="qty-input" name="qty_arr[<?php echo ++$i; ?>]" type="text">
+                            <a class="qty-plus" href="return:;">+</a>
+                        <?php endif ?>
+                    </td>
+
+
+                <?php endforeach; ?>
+
+            </tr>
+        <?php endforeach; ?>
+    </table>
+
+    <div class="product-options-bottom">
+        <div class="box-tocart">
+            <div class="fieldset">
+                <div class="actions">
+                    <button type="submit" class="action primary tocart" id="product-addtocart-button">
+                        <span>הוסף להזמנה</span>
+                    </button>
+
+                    <script>
+                        require([
+                            'jquery',
+                            'mage/mage',
+                            'Magento_Catalog/product/view/validation',
+                            'Magento_Catalog/js/catalog-add-to-cart'
+                        ], function ($) {
+                            'use strict';
+
+                            $('#multiple_addtocart_form').mage('validation', {
+                                radioCheckboxClosest: '.nested',
+                                submitHandler: function (form) {
+                                    var widget = $(form).catalogAddToCart({
+                                        bindSubmit: false
+                                    });
+
+                                    widget.catalogAddToCart('submitForm', $(form));
+
+                                    return false;
+                                }
+                            });
+                        });
+                    </script>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<script>
+    require([
+        'jquery'
+    ], function ($) {
+        $('.qty-minus').bind("click", function () {
+            var qty = $(this).next();
+            if (qty.val() > 0) qty.val(qty.val() - 1);
+        });
+
+        $('.qty-plus').bind("click", function () {
+            var qty = $(this).prev();
+
+            if (qty.val() == '') {
+                qty.val(0);
+            }
+            qty.val(parseInt(qty.val()) + 1);
+        });
+    });
+</script>

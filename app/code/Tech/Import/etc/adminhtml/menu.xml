@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/menu.xsd">
+    <menu>
+        <add id="Tech_Import::action" title="Import" module="Tech_Import" sortOrder="11" action="tech_import/action" resource="Tech_Metro::post" parent="Tech_Metro::metro"/>
+    </menu>
+</config>
