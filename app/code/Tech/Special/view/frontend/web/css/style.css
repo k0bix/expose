@@ -1,6 +1,6 @@
 
 .special {
-    width: 1250px;
+    max-width: 1250px;
     margin: 0 auto;
 }
 
@@ -23,7 +23,7 @@
 }
 
 .special-title{
-    width: 1240px;
+    max-width: 1240px;
     text-align: center;
     border-bottom: 1px solid #000;
     line-height: 0.1em;

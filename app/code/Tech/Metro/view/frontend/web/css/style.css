@@ -1,22 +1,52 @@
 .metro{
-    width: 1250px;
-    margin: 0 auto;
+    margin: 20px auto;
 }
 
 .metro ul{
     display: inline-block;
     padding: 0;
 }
-
-.metro li{
-    float: right;
-    margin-left: 5px;
-    list-style-type: none;
-    position: relative;
+@media (min-width: 1036px){
+    .metro li {
+        float: right;
+        margin-left: 5px;
+        list-style-type: none;
+        position: relative;
+        width: 33%;
+    }
+    .metro li:nth-child(3n){
+        margin-left: 0;
+    }
 }
 
-.metro li:nth-child(3n){
-    margin-left: 0;
+@media (max-width: 1036px){
+    .metro li {
+        float: right;
+        margin-left: 5px;
+        list-style-type: none;
+        position: relative;
+        width: 49.65%;
+    }
+    .metro li:nth-child(2n){
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 768px){
+    .metro li {
+        float: right;
+        margin-left: 5px;
+        list-style-type: none;
+        position: relative;
+        width: 100%;
+    }
+    .metro li{
+        margin-left: 0;
+    }
+}
+
+.metro img {
+    width: 100%;
 }
 
 .metro li:nth-child(1) div:after{
