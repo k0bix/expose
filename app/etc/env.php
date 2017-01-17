@@ -6,7 +6,7 @@ return array (
   ),
   'crypt' => 
   array (
-    'key' => '2f793d29b87060ac8411050fc2688032',
+    'key' => '28c071e6931dd5e6b73ca09512c6db22',
   ),
   'session' => 
   array (
@@ -35,7 +35,7 @@ return array (
     ),
   ),
   'x-frame-options' => 'SAMEORIGIN',
-  'MAGE_MODE' => 'developer',
+  'MAGE_MODE' => 'default',
   'cache_types' => 
   array (
     'config' => 1,
@@ -46,7 +46,7 @@ return array (
     'db_ddl' => 1,
     'eav' => 1,
     'customer_notification' => 1,
-    'full_page' => 0,
+    'full_page' => 1,
     'config_integration' => 1,
     'config_integration_api' => 1,
     'translate' => 1,
@@ -54,6 +54,6 @@ return array (
   ),
   'install' => 
   array (
-    'date' => 'Mon, 27 Jun 2016 15:29:05 +0000',
+    'date' => 'Mon, 28 Nov 2016 17:34:29 +0000',
   ),
 );

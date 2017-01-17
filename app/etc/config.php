@@ -2,6 +2,7 @@
 return array (
   'modules' => 
   array (
+    'Fisha_Import' => 1,
     'Magento_Store' => 1,
     'Magento_AdvancedPricingImportExport' => 1,
     'Magento_Directory' => 1,
@@ -104,11 +105,5 @@ return array (
     'Magento_Weee' => 1,
     'Magento_CatalogWidget' => 1,
     'Magento_Wishlist' => 1,
-    'Tech_Catalog' => 1,
-    'Tech_Checkout' => 1,
-    'Tech_Import' => 1,
-    'Tech_Metro' => 1,
-    'Tech_Slider' => 1,
-    'Tech_Special' => 1,
   ),
 );
